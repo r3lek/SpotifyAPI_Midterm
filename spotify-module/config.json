@@ -1,3 +1,4 @@
 {
-    "url": "https://api.spotify.com"
+    "url": "https://api.spotify.com",
+    "new_release": "https://api.spotify.com/v1/browse/new-releases"
 }

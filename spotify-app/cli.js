@@ -2,8 +2,8 @@
     --search, --help, --getMusic,.....
 */
 
-const 
-    app = require('./app'),
+const
+    app = require('../spotify-module'),
     yargs = require('yargs')
 
 const flags = yargs.usage('$0: Usage <cmd> [options]')
@@ -12,9 +12,26 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
         desc: 'searches for an item specified by the user',
         // Not sure what to put here yet; just setting it up
         builder: (yargs) => {
+            return yargs.option('s', {
+                alias: 'shuffle',
+                describe: 'shuffle the deck before drawing'
+            }).option('n', {
+                alias: 'number',
+                describe: 'number of cards to draw'
+            })
+        },
+        handler: (argv) => { app.draw(argv.shuffle, argv.number)}
+    })
+
+    .command({
+        command: 'newRelease',
+        desc: 'Searches for new releases',
+        builder: (yargs) => {
             return yargs.option()
         },
-        handler: (argv) => {}
+        handler: (argv) => { }
+
     })
+
     .help('help')
     .argv

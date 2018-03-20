@@ -25,6 +25,12 @@ let request = require('request'); // "Request" library
 const client_id = 'a29b098605c44f6bbcc0a0520394c212'; // Your client id
 const client_secret = '9a30d6786a72444c9dee908ad1809327'; // Your secret
 
+const newRelease = require("spotify-module");
+
+const new_Release = (current, throwaway) => {
+  console.log("Testing fnc " );
+}
+
 // your application requests authorization
 let authOptions = {
   url: 'https://accounts.spotify.com/api/token',
@@ -43,6 +49,7 @@ let authOptions = {
   If we are going to add user option to add/remove/view user info then we'll have to use: 
   https://github.com/spotify/web-api-auth-examples/tree/master/authorization_code
 */
+
 
 request.post(authOptions, function(error, response, body) {
   if (!error && response.statusCode === 200) {
@@ -66,5 +73,6 @@ request.post(authOptions, function(error, response, body) {
   }
 });
 
-//Another test case:
-//https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10
+
+// Another test case:
+// https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10
