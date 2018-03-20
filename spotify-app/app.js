@@ -21,15 +21,22 @@
  */
 
 let request = require('request'); // "Request" library
+const newRelease = require("../spotify-module");
 
 const client_id = 'a29b098605c44f6bbcc0a0520394c212'; // Your client id
 const client_secret = '9a30d6786a72444c9dee908ad1809327'; // Your secret
 
-const newRelease = require("spotify-module");
 
-const new_Release = (current, throwaway) => {
-  console.log("Testing fnc " );
+
+const new_release = (country ='US', limit = 5) => {
+  console.log("Testing the new release.");
+  
 }
+
+
+
+
+
 
 // your application requests authorization
 let authOptions = {
@@ -74,5 +81,11 @@ request.post(authOptions, function(error, response, body) {
 });
 
 
+
 // Another test case:
 // https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10
+
+module.exports = {
+  new_release,
+
+}

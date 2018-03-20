@@ -3,7 +3,7 @@
 */
 
 const
-    app = require('../spotify-module'),
+    app = require('./app'),
     yargs = require('yargs')
 
 const flags = yargs.usage('$0: Usage <cmd> [options]')
@@ -26,10 +26,8 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
     .command({
         command: 'newRelease',
         desc: 'Searches for new releases',
-        builder: (yargs) => {
-            return yargs.option()
-        },
-        handler: (argv) => { }
+       
+        handler: (argv) => {app.new_release(argv.country, argv.limit)}
 
     })
 

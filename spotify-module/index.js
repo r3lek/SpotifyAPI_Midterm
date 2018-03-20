@@ -10,7 +10,7 @@ const _fetch = (command) => {
         .catch(error => error.response.body)
 }
 
-exports.new_release = (country,limit) =>{
+exports.new_release = (country="US",limit=5) =>{
     return _fetch(`/v1/browse/new-releases?country=${country}&offset=0&limit=${limit}`); 
        
 }
