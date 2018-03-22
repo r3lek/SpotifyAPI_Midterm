@@ -29,7 +29,7 @@ const new_release = (country = 'US', limit = 5) => {
 
 
 
-  
+
   newRelease.new_release(country,limit)  
   .then(result => {
 
