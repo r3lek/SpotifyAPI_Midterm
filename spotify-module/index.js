@@ -58,7 +58,7 @@ let authOptions = {
 const _fetch = (command) => {
     return superagent.get(`${config.url}/${command}`)
         .set({
-            'Authorization': 'Bearer ' + "BQDe31OzzlXnvkGJdBNBo9QTAlV_nKl-AUXKk7VMxBe4z0sk08EpvY4e7yXtdF0YjGO96lD30bCBeLjG9zE",
+            'Authorization': 'Bearer ' + "BQDzXxtIcSP5ttyBCk3ydfHxFxJuXxcCIUhQ4Ew3eV5JuS-NL-Rq0wFWxYYql5Kquciw0VxlsZ7p9YBrszK_lbRKtTouMqPvC0X5rFWU2aGUULJMO9TxWiS-_zObb4w-tzzw1QIcrFrzsWl9rtT1gXocwKNuS8hlUyYuVHY",
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           ,
@@ -67,22 +67,13 @@ const _fetch = (command) => {
         .then(response => response.body)
        // console.log("the res", response.body)
         .catch(error => error.response.body)
-        //console.log("the error", error.response)
+        console.log("the error", error.response.body)
+        
 }
 
 exports.new_release = () =>{
-    // let options = {
-    //     url: 'https://api.spotify.com/v1/search?query=taylor&type=artist&offset=0&limit=5',
-    //     headers: {
-    //       'Authorization': 'Bearer ' + token,
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     json: true
-    //   };
-
-    //return request.get(op,function(error,response,body){});
-    return _fetch(`v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10`);
+    console.log("The auth ttttt", authToken);
+    return _fetch(`v1/browse/new-releases?country=US&offset=0&limit=5`);
        
 }
 

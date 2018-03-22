@@ -28,7 +28,7 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
         desc: 'Searches for new releases',
        
         handler: (argv) => {app.new_release(argv.country, argv.limit)}
-
+        
     })
 
     .help('help')
