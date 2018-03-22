@@ -25,10 +25,15 @@ const newRelease = require("../spotify-module");
 
 
 const new_release = (country = 'US', limit = 5) => {
+
+
+
+
+  
   newRelease.new_release(country,limit)  
   .then(result => {
 
-    //console.log("The whole thing: ", result.albums.items);
+    console.log("The whole thing: ", result.albums.items);
     //console.log("The response: ", result.albums.items[2].artists[0].name);//Will go inside items inside artists and get individual names
     //console.log("The response: ", result.albums.items[0].name); // Will go through each one and print the album song  
     result.albums.items.forEach(element => {
@@ -37,6 +42,7 @@ const new_release = (country = 'US', limit = 5) => {
       element.artists.forEach(el  => {
           console.log(`${el.name}`);
       });
+      console.log(`Released on Spotify:  ${element.release_date}`);
       //console.log("the first element is ", element);
       console.log('\n');
       })

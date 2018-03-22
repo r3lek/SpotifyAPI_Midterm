@@ -60,7 +60,7 @@ let authOptions = {
 const _fetch = (command) => {
     return superagent.get(`${config.url}/${command}`)
         .set({
-            'Authorization': 'Bearer ' + "BQC6izrXNm-AAMcKCSohxPjjnGYvZggSWZbx-0IyD5NKb7TK2E1dx7RnFddDee1WyKs8ZK7tWUKVnt2xJYvsTE1wgNDh4X0gtiMjJJY5SiESlOPZadAb5npGTw0mgvFbYGzWg9ZCKT_r9P4c7DeDj34gBAFyPVmVNbTk3tY",
+            'Authorization': 'Bearer ' + "BQAYGWslkEA5ZrFERj_Oe7oiyIptw9ASES4dk0KgGIwJy8wjKiiefqpdYVsm3ldVDDne_8YnnWAk9MzIzgNm7A08SDaJhywJrGcSXaoHv-hCNJHPR0r2sv7CCoRgh-isXDZhZL6K9PgytKJCsCoCIHDl6SCJA1QqemuT3Js",
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           ,
