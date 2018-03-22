@@ -9,6 +9,8 @@ const
 let authToken ="";
 let op;
 
+
+
 // your application requests authorization
 let authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -58,7 +60,7 @@ let authOptions = {
 const _fetch = (command) => {
     return superagent.get(`${config.url}/${command}`)
         .set({
-            'Authorization': 'Bearer ' + "BQDzXxtIcSP5ttyBCk3ydfHxFxJuXxcCIUhQ4Ew3eV5JuS-NL-Rq0wFWxYYql5Kquciw0VxlsZ7p9YBrszK_lbRKtTouMqPvC0X5rFWU2aGUULJMO9TxWiS-_zObb4w-tzzw1QIcrFrzsWl9rtT1gXocwKNuS8hlUyYuVHY",
+            'Authorization': 'Bearer ' + "BQC6izrXNm-AAMcKCSohxPjjnGYvZggSWZbx-0IyD5NKb7TK2E1dx7RnFddDee1WyKs8ZK7tWUKVnt2xJYvsTE1wgNDh4X0gtiMjJJY5SiESlOPZadAb5npGTw0mgvFbYGzWg9ZCKT_r9P4c7DeDj34gBAFyPVmVNbTk3tY",
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           ,
@@ -71,10 +73,11 @@ const _fetch = (command) => {
         
 }
 
-exports.new_release = () =>{
+exports.new_release = (country, limit) =>{
     console.log("The auth ttttt", authToken);
-    return _fetch(`v1/browse/new-releases?country=US&offset=0&limit=5`);
-       
+    console.log("The country ", country);
+    return _fetch(`v1/browse/new-releases?country=${country}&offset=0&limit=${limit}`);
+    //return _fetch(`v1/browse/new-releases?country=US&offset=0&limit=5`);//CHANGE THIS!!!!!!!   
 }
 
 exports.authToken = authToken;

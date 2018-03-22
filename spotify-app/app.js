@@ -24,22 +24,21 @@ let request = require('request'); // "Request" library
 const newRelease = require("../spotify-module");
 
 
-const new_release = () => {
-  newRelease.new_release()  //HAVE THE GLOBAL VAR of cards
+const new_release = (country = 'US', limit = 5) => {
+  newRelease.new_release(country,limit)  
   .then(result => {
 
-    //Needs a double for each loop
-    //console.log("The wholw thing: ", result.albums.items);
+    //console.log("The whole thing: ", result.albums.items);
     //console.log("The response: ", result.albums.items[2].artists[0].name);//Will go inside items inside artists and get individual names
     //console.log("The response: ", result.albums.items[0].name); // Will go through each one and print the album song  
     result.albums.items.forEach(element => {
-      console.log("Album Name: ", element.name );  
+      console.log(`Album Name:  ${element.name} `);  
       console.log("Artists: ");
       element.artists.forEach(el  => {
-          console.log(el.name);
+          console.log(`${el.name}`);
       });
       //console.log("the first element is ", element);
-
+      console.log('\n');
       })
   })
   .catch(err => console.log(err))
