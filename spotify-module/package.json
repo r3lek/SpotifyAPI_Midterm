@@ -9,6 +9,7 @@
   "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol",
   "license": "MIT",
   "dependencies": {
+    "request": "^2.85.0",
     "superagent": "^3.8.2",
     "yargs": "^11.0.0"
   }

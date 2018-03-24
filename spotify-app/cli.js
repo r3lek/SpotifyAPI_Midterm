@@ -1,34 +1,13 @@
-/*Code that lets user interact with command line and get options, 
-    --search, --help, --getMusic,.....
-*/
-
 const
     app = require('./app'),
     yargs = require('yargs')
 
 const flags = yargs.usage('$0: Usage <cmd> [options]')
-    .command({
-        command: 'search',
-        desc: 'searches for an item specified by the user',
-        // Not sure what to put here yet; just setting it up
-        builder: (yargs) => {
-            return yargs.option('s', {
-                alias: 'shuffle',
-                describe: 'shuffle the deck before drawing'
-            }).option('n', {
-                alias: 'number',
-                describe: 'number of cards to draw'
-            })
-        },
-        handler: (argv) => { app.draw(argv.shuffle, argv.number)}
-    })
 
     .command({
-        command: 'newRelease',
-        desc: 'Searches for new releases',
-       
-        handler: (argv) => {app.new_release(argv.country, argv.limit)}
-
+        command: 'featured',
+        desc: 'Searches for featured playlists',
+        handler: (argv) => {app.featuredPlaylists()}
     })
 
     .help('help')

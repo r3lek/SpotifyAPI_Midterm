@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "inquirer": "^5.1.0",
+    "request": "^2.85.0",
+    "table": "^4.0.3",
     "yargs": "^11.0.0"
   }
 }
