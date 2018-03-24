@@ -2,8 +2,8 @@
     --search, --help, --getMusic,.....
 */
 
-
 //NOTE ADD A DEFAULT TO THIS THING WHEN DOING THE HANDLER!!!!!!!!!!!!!!! 
+
 
 const
     app = require('./app'),
@@ -22,20 +22,27 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
                 alias: 'number',
                 describe: 'number of cards to draw'
                 
+            }).option('newRelease', {
+                alias: 'newR',
+                describe: 'List of newly released albums in a specific country',
+                //default: 'true'
+
             })
            
         },
         
         handler: (argv) => { 
             
-            if(argv.number ==7){
+            //passed in number
+            if(argv.number){
                 app.draw(argv.shuffle, argv.number)
             }
-            else{
-                console.log("Not there! ");
-                console.log("Shuffle: ", argv.shuffle);
-                console.log("Number: ", argv.number);
+            
+            else if(argv.newR){
+                console.log("ITs a a truthy value");
+                app.new_release(argv.country = 'US', argv.limit = 5)
             }
+
         }
     })
 
@@ -54,7 +61,7 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
         },
         
         handler: (argv) => {app.new_release(argv.country, argv.limit)}
-        
+
     })
 
     .help('help')

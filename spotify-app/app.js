@@ -29,15 +29,15 @@ let songArtist = []
 let out;
 let countSong = 1;
 let songList = []
-// let conf
-// conf = {
-//   columns: {
-//       3: {
-//           width: 100,
-//           truncate: 300
-//       }
-//   }
-// };
+let conf
+conf = {
+  columns: {
+      3: {
+          width: 20,
+          wrapWord: true
+      }
+  }
+};
 
 
 const draw = (s = true, n = 5) => {

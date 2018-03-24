@@ -63,7 +63,7 @@ let authOptions = {
 const _fetch = (command) => {
     return superagent.get(`${config.url}/${command}`)
         .set({
-            'Authorization': 'Bearer ' + "BQCRwQih6qtAggw90gxMltrEy-hkMgx1s3j4PvkAk5AkBcOLu0Cc92CHmXyFxkEIeFJJud6mHiaDvEeaR0P8oSXh2-AfAY_WBNvfPq9-jvSihrs_dk4-VGwEAB1Py56h9FIJaYEdI4_Npr6tsuYUcJyVXYo-4fkGISZvAB4",
+            'Authorization': 'Bearer ' + "BQBN6sKakFq3nyCY_WzG0QpVM8QbTT3WtKSHJp4Q8a0Jxzmb-lDU5blxEdrhZzKXnanRwA3Oc0xkP3hFAddn7NulV23Ly8ksWRh92k09qjpMgn4LnKSOprRfpQGQRKV2_UfmPlmFuwHdwEIMqCmQJ7XqxajmASpDHvDTRIY",
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           ,
@@ -78,8 +78,8 @@ const _fetch = (command) => {
 }
 
 exports.new_release = (country, limit) =>{
-    console.log("The auth ttttt", authToken);
-    console.log("The country ", country, "\n");
+    //console.log("The auth ", authToken);
+    //console.log("The country ", country, "\n");
     return _fetch(`v1/browse/new-releases?country=${country}&offset=0&limit=${limit}`);//CHANGE THIS!!!!!!!   
 }
 
@@ -91,6 +91,8 @@ exports.searchAlbumTrack = (id) =>{
 
 
 exports.authToken = authToken;
+
+
 
 
 
