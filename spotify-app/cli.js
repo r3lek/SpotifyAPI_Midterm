@@ -1,6 +1,9 @@
 /*Code that lets user interact with command line and get options, 
     --search, --help, --getMusic,.....
+    to run searchArtist:
+    node cli.js search --artist artist you want to search for
 */
+
 
 const
     app = require('./app'),
@@ -9,18 +12,14 @@ const
 const flags = yargs.usage('$0: Usage <cmd> [options]')
     .command({
         command: 'search',
-        desc: 'searches for an item specified by the user',
-        // Not sure what to put here yet; just setting it up
+        desc: 'Searches for an item specified by the user',
         builder: (yargs) => {
-            return yargs.option('s', {
-                alias: 'shuffle',
-                describe: 'shuffle the deck before drawing'
-            }).option('n', {
-                alias: 'number',
-                describe: 'number of cards to draw'
+            return yargs.option('artist', {
+                // alias: '',
+                describe: 'Searches for an artist'
             })
         },
-        handler: (argv) => { app.draw(argv.shuffle, argv.number)}
+        handler: (argv) => { app.search_artist(argv.artist)}
     })
 
     .command({
