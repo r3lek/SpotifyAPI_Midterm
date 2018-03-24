@@ -10,7 +10,7 @@ let authToken ="";
 let op;
 
 
-
+/*
 // your application requests authorization
 let authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -22,15 +22,7 @@ let authOptions = {
     },
     json: true
   };
-  
-  
-  /*
-    Depending on what we choose for options we may have to change this bottom fnc
-    If we are going to add user option to add/remove/view user info then we'll have to use: 
-    https://github.com/spotify/web-api-auth-examples/tree/master/authorization_code
-  */
-  
-  
+
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
   
@@ -50,35 +42,53 @@ let authOptions = {
 
       op = options;
       request.get(options, function(error, response, body) {
-        //console.log(body);
+        console.log(body);
         //console.log("BODY ITEMS:" , body.artists.items);
       });
     }
   });
+  */
+
+  
+//   /*
+//     Depending on what we choose for options we may have to change this bottom fnc
+//     If we are going to add user option to add/remove/view user info then we'll have to use: 
+//     https://github.com/spotify/web-api-auth-examples/tree/master/authorization_code
+//   */
+  
+  
+
   
 
 const _fetch = (command) => {
     return superagent.get(`${config.url}/${command}`)
         .set({
-            'Authorization': 'Bearer ' + "BQAYGWslkEA5ZrFERj_Oe7oiyIptw9ASES4dk0KgGIwJy8wjKiiefqpdYVsm3ldVDDne_8YnnWAk9MzIzgNm7A08SDaJhywJrGcSXaoHv-hCNJHPR0r2sv7CCoRgh-isXDZhZL6K9PgytKJCsCoCIHDl6SCJA1QqemuT3Js",
+            'Authorization': 'Bearer ' + "BQCRwQih6qtAggw90gxMltrEy-hkMgx1s3j4PvkAk5AkBcOLu0Cc92CHmXyFxkEIeFJJud6mHiaDvEeaR0P8oSXh2-AfAY_WBNvfPq9-jvSihrs_dk4-VGwEAB1Py56h9FIJaYEdI4_Npr6tsuYUcJyVXYo-4fkGISZvAB4",
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           ,
           json: true
         })
         .then(response => response.body)
-       // console.log("the res", response.body)
-        .catch(error => error.response.body)
-        console.log("the error", error.response.body)
+        console.log("the res", response.body)
+        .catch(error => error.response)
+        //console.log("the error", error)
+        //console.log("The command ", command);
         
 }
 
 exports.new_release = (country, limit) =>{
     console.log("The auth ttttt", authToken);
-    console.log("The country ", country);
-    return _fetch(`v1/browse/new-releases?country=${country}&offset=0&limit=${limit}`);
-    //return _fetch(`v1/browse/new-releases?country=US&offset=0&limit=5`);//CHANGE THIS!!!!!!!   
+    console.log("The country ", country, "\n");
+    return _fetch(`v1/browse/new-releases?country=${country}&offset=0&limit=${limit}`);//CHANGE THIS!!!!!!!   
 }
+
+exports.searchAlbumTrack = (id) =>{
+  console.log("Will now display tracks from album selected: ");
+  return _fetch(`v1/albums/${id}/tracks`);
+
+}
+
 
 exports.authToken = authToken;
 

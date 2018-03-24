@@ -9,7 +9,9 @@
   "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.2.1",
     "inquirer": "^5.1.0",
+    "table": "^4.0.3",
     "yargs": "^11.0.0"
   }
 }

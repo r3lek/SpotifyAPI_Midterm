@@ -2,6 +2,9 @@
     --search, --help, --getMusic,.....
 */
 
+
+//NOTE ADD A DEFAULT TO THIS THING WHEN DOING THE HANDLER!!!!!!!!!!!!!!! 
+
 const
     app = require('./app'),
     yargs = require('yargs')
@@ -18,9 +21,22 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
             }).option('n', {
                 alias: 'number',
                 describe: 'number of cards to draw'
+                
             })
+           
         },
-        handler: (argv) => { app.draw(argv.shuffle, argv.number)}
+        
+        handler: (argv) => { 
+            
+            if(argv.number ==7){
+                app.draw(argv.shuffle, argv.number)
+            }
+            else{
+                console.log("Not there! ");
+                console.log("Shuffle: ", argv.shuffle);
+                console.log("Number: ", argv.number);
+            }
+        }
     })
 
     .command({
