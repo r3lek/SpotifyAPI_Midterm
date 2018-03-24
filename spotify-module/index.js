@@ -80,6 +80,12 @@ exports.new_release = (country, limit) =>{
     //return _fetch(`v1/browse/new-releases?country=US&offset=0&limit=5`);//CHANGE THIS!!!!!!!   
 }
 
+exports.search_artist = (artist) => {
+  // console.log("Authorization Token: ", authToken);
+  // console.log("Artist Name: ", name);
+  return _fetch(`v1/search?q=${artist}&type=artist&market=US&limit=5`);
+}
+
 exports.authToken = authToken;
 
 
