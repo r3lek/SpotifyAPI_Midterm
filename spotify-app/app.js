@@ -26,10 +26,6 @@ const newRelease = require("../spotify-module");
 
 const new_release = (country = 'US', limit = 5) => {
 
-
-
-
-
   newRelease.new_release(country,limit)  
   .then(result => {
 
@@ -51,6 +47,47 @@ const new_release = (country = 'US', limit = 5) => {
 
 }
 
+const search_artist = (artist) => {
+  let listOfArtists = []
+  newRelease.search_artist(artist)
+  .then(result => {
+    
+    for (var i = 0; i < result.artists.items.length; i++) {
+      listOfArtists.push({name: `${result.artists.items[i].name}`, popularity: `${result.artists.items[i].popularity}`, genre: `${result.artists.items[i].genres}`, followers: `${result.artists.items[i].followers.total}`})
+      // listOfArtists.push({name: `${result.artists.items[i].name}`, genre: `${result.artists.items[i].genres}`, followers: `${result.artists.items[i].followers.total}`})
+    }
+
+    // console.log(listOfArtists)
+    return inquirer.prompt([{
+      type: 'checkbox',
+      message: 'Select an Artist',
+      name: 'music_artists',
+      choices: listOfArtists,
+      validate: (answer) => {
+        if (answer.length > 1 || answer.length == 0) {
+          return 'You can only choose one artist at a time.'
+        }
+        return true;
+      }
+    }])
+  })
+  .then(result => {
+    listOfArtists.forEach((value, index) => {
+      if(value.name.includes(result.music_artists)){
+        // console.log(listOfArtists[index]);
+        table.push(
+          { 'name': value.name },
+          { 'popularity': value.popularity},
+          { 'genre(s)' : value.genre},
+          { 'followers' : value.followers}
+        );
+        console.log(table.toString());
+      }
+    })
+  })
+  .catch(err => console.log(err))
+}
+
 
 
 
@@ -62,6 +99,6 @@ const new_release = (country = 'US', limit = 5) => {
 // https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10
 
 module.exports = {
-  new_release
-
+  new_release,
+  search_artist
 }
