@@ -2,9 +2,6 @@
     --search, --help, --getMusic,.....
 */
 
-//NOTE ADD A DEFAULT TO THIS THING WHEN DOING THE HANDLER!!!!!!!!!!!!!!! 
-
-
 const
     app = require('./app'),
     yargs = require('yargs')
@@ -25,6 +22,9 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
             }).option('featured', {
                 alias:'feat',
                 describe: 'Searches for featured playlists'
+            }).options('album', {
+                alias: 'alb',
+                describe: 'Fetch albums and display more info'
             })
            
         },
@@ -35,21 +35,23 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
                 console.log("New releases being searched: ");
                 app.new_release(argv.country = 'US', argv.limit = 5)
             }
+            else if(argv.alb && argv.art){
+                app.search(argv.alb, argv.art);
+            }
             else if(argv.art){
                 console.log("Artists being searched");
                 app.search_artist(argv.artist)
             }
             else if(argv.feat){
                 app.featuredPlaylists()
-            }
-
+            }           
         }
     })
 
     .command({
         command: 'newRelease',
         desc: 'Searches for new releases',
-       
+
         builder: (yargs) => {
             return yargs.option('country', {
                 alias: 'countrys',

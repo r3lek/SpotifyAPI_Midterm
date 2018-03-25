@@ -10,8 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "cli-table": "^0.3.1",
+    "cliui": "^4.0.0",
     "colors": "^1.2.1",
     "inquirer": "^5.1.0",
+    "moment": "^2.21.0",
     "table": "^4.0.3",
     "yargs": "^11.0.0"
   }

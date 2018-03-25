@@ -9,4 +9,5 @@ To search featured playlists: node cli.js search --featured
 
 To search new Releases: node cli.js search --newRelease
 
+To search album + artist: node cli.js seach --album lil pump --artist lil pump
 

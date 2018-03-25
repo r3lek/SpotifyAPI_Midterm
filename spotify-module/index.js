@@ -1,4 +1,5 @@
 //Custom module, that fetches data from the Spotify API, via http/request/superagent
+
 const client_id = 'a29b098605c44f6bbcc0a0520394c212'; // Your client id
 const client_secret = '9a30d6786a72444c9dee908ad1809327'; // Your secret
 let request = require('request'); // "Request" library
@@ -8,7 +9,16 @@ const
 let authToken ="";
 let op;
 
+/**
+ * This is an example of a basic node.js script that performs
+ * the Client Credentials oAuth2 flow to authenticate against
+ * the Spotify Accounts.
+ *
+ * For more information, read
+ * https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow
+ */
 
+//Mirasol
 let authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
@@ -52,6 +62,7 @@ const _fetch = (command) => {
       .catch(error => error.response.body)
 }
 
+//Mirasol
 setTimeout(() =>{
  // console.log('Test');
   exports.saveTrackUsr = () =>{
@@ -84,3 +95,17 @@ exports.featuredPlaylists = () => {
   return _fetch('v1/browse/featured-playlists')
 }
 
+
+//Chelle
+const _search = (query, type) => {
+  const command = `v1/search?q=${query}&type=${type}`
+  return _fetch(command)
+}
+
+exports.search_album = (query) => {
+  return _search(query, 'album')
+}
+
+exports.fetch_album = (id) => {
+  return _fetch(`v1/albums/${id}`)
+}
