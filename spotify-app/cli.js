@@ -30,6 +30,13 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
         handler: (argv) => {app.new_release(argv.country, argv.limit)}
 
     })
+    .command({
+        command: 'saveTrack',
+        desc: 'Searches for users favorite tracks' ,
+
+        handler: (argv) => {app.new_release(argv.country, argv.limit)}
+    })
+    
 
     .help('help')
     .argv
