@@ -22,7 +22,9 @@
 
 let request = require('request'); // "Request" library
 const newRelease = require("../spotify-module");
-
+const inquirer = require('inquirer');
+const Table = require('cli-table');
+let table = new Table();
 
 const new_release = (country = 'US', limit = 5) => {
 
