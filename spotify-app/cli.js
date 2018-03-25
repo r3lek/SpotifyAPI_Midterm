@@ -1,35 +1,26 @@
-/*Code that lets user interact with command line and get options, 
-    --search, --help, --getMusic,.....
-*/
+/*jshint esversion: 6 */
+/*jshint asi: true */
 
 const
     app = require('./app'),
     yargs = require('yargs')
 
-const flags = yargs.usage('$0: Usage <cmd> [options]')
+const flags = yargs.usage('Usage: $0 <command> [options]')
     .command({
         command: 'search',
-        desc: 'searches for an item specified by the user',
-        // Not sure what to put here yet; just setting it up
+        desc: 'search from Spotify Web API [--artist, --album]',
         builder: (yargs) => {
-            return yargs.option('s', {
-                alias: 'shuffle',
-                describe: 'shuffle the deck before drawing'
-            }).option('n', {
-                alias: 'number',
-                describe: 'number of cards to draw'
+            return yargs.option('artist', {
+                describe: 'search for artist',
+                type: 'string'
+            }).option('album', {
+                describe: 'search for album',
+                type: 'string'
             })
         },
-        handler: (argv) => { app.draw(argv.shuffle, argv.number)}
+        handler: (argv) => {
+            app.search(argv.album, argv.artist)
+        }
     })
-
-    .command({
-        command: 'newRelease',
-        desc: 'Searches for new releases',
-       
-        handler: (argv) => {app.new_release(argv.country, argv.limit)}
-
-    })
-
     .help('help')
     .argv

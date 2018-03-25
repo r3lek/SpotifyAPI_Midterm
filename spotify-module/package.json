@@ -6,10 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol",
+  "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol, Chelle",
   "license": "MIT",
   "dependencies": {
-    "superagent": "^3.8.2",
-    "yargs": "^11.0.0"
+    "superagent": "^3.8.2"
   }
 }

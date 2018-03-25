@@ -1,15 +1,21 @@
 {
   "name": "spotify-app",
   "version": "1.0.0",
-  "description": "4220 midterm demo ",
-  "main": "index.js",
+  "description": "\"Spotify API CLI App\" ",
+  "main": "app.js",
+  "dependencies": {
+    "cliui": "^4.0.0",
+    "colors": "^1.2.1",
+    "inquirer": "^5.1.0",
+    "moment": "^2.21.0",
+    "spotify-module": "file:../spotify-module",
+    "table": "^4.0.3",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol",
-  "license": "MIT",
-  "dependencies": {
-    "inquirer": "^5.1.0",
-    "yargs": "^11.0.0"
-  }
+  "author": "Miguel, Alyssa, Abbie, Matthew, Mirasol, Chelle",
+  "license": "MIT"
 }
