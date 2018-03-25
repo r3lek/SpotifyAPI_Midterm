@@ -15,14 +15,7 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
         desc: 'searches for an item specified by the user',
         // Not sure what to put here yet; just setting it up
         builder: (yargs) => {
-            return yargs.option('s', {
-                alias: 'shuffle',
-                describe: 'shuffle the deck before drawing'
-            }).option('n', {
-                alias: 'number',
-                describe: 'number of cards to draw'
-                
-            }).option('newRelease', {
+            return yargs.option('newRelease', {
                 alias: 'newR',
                 describe: 'List of newly released albums in a specific country',
                 //default: 'true'
@@ -32,20 +25,13 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
             }).option('featured', {
                 alias:'feat',
                 describe: 'Searches for featured playlists'
-
-             
             })
            
         },
         
         handler: (argv) => { 
             
-            //passed in number
-            if(argv.number){
-                app.draw(argv.shuffle, argv.number)
-            }
-            
-            else if(argv.newR){
+            if(argv.newR){
                 console.log("New releases being searched: ");
                 app.new_release(argv.country = 'US', argv.limit = 5)
             }
