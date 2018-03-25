@@ -26,7 +26,14 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
                 alias: 'newR',
                 describe: 'List of newly released albums in a specific country',
                 //default: 'true'
+            }).option('artist', {
+                alias:'art',
+                describe: 'Searches for an artist'
+            }).option('featured', {
+                alias:'feat',
+                describe: 'Searches for featured playlists'
 
+             
             })
            
         },
@@ -39,8 +46,15 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
             }
             
             else if(argv.newR){
-                console.log("ITs a a truthy value");
+                console.log("New releases being searched: ");
                 app.new_release(argv.country = 'US', argv.limit = 5)
+            }
+            else if(argv.art){
+                console.log("Artists being searched");
+                app.search_artist(argv.artist)
+            }
+            else if(argv.feat){
+                app.featuredPlaylists()
             }
 
         }

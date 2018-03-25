@@ -16,19 +16,28 @@ const colors = require('colors');
 const newRelease = require("../spotify-module");
 const countries = require("../spotify-module/config");
 
-//For new-release output
+//For new-release output (Miguel)
 let data = [['Number'.green, 'Album Name'.blue, 'Artists'.yellow, 'Released'.green, 'URL'.red]]
 let artistName = []
 let output;
 let count = 1;
 let albumList = []
 
-//For song output
-let songData = [["Song Number", "Song Name", "Artists", "30sec Preview"]]
+//For song output (miguel)
+let songData = [["Song Number", "Song Name", "Artists", "Song Length", "30sec Preview"]]
 let songArtist = []
 let out;
 let countSong = 1;
 let songList = []
+
+//const Alyssa
+const Table = require('cli-table');
+let tables = new Table();
+
+//Matthew
+let dataP = [];
+
+//table format (Miguel)
 let conf
 conf = {
   columns: {
@@ -163,7 +172,14 @@ const new_release = (country = 'US', limit = 5) => {
                         element.artists.forEach(el => {
                           songArtist.push(el.name);
                         });
-                        songData.push([countSong, element.name, songArtist.join(", "), element.external_urls.spotify])
+
+                        //Get time in min:sec
+                        let x = Math.floor(element.duration_ms / 1000)
+                        let sec = Math.floor(x % 60)
+                        Math.floor(x /= 60)
+                        let min = Math.floor(x % 60)
+
+                        songData.push([countSong, element.name, songArtist.join(", "), `${min}:${sec}`, element.external_urls.spotify])
                         countSong++;
                         songArtist = [];
 
@@ -185,10 +201,82 @@ const new_release = (country = 'US', limit = 5) => {
     .catch(err => console.log(err))
 }
 
+//Alyssa (201-248)
+const search_artist = (artist) => {
+  let listOfArtists = []
+
+  setTimeout(() => {
+
+  newRelease.search_artist(artist)
+  .then(result => {
+    //console.log('The result!!!!!!!!!!!:', result)
+    for (var i = 0; i < result.artists.items.length; i++) {
+      listOfArtists.push({name: `${result.artists.items[i].name}`, popularity: `${result.artists.items[i].popularity}`, genre: `${result.artists.items[i].genres}`, followers: `${result.artists.items[i].followers.total}`})
+      // listOfArtists.push({name: `${result.artists.items[i].name}`, genre: `${result.artists.items[i].genres}`, followers: `${result.artists.items[i].followers.total}`})
+    }
+
+    // console.log(listOfArtists)
+    return inquirer.prompt([{
+      type: 'checkbox',
+      message: 'Select an Artist',
+      name: 'music_artists',
+      choices: listOfArtists,
+      validate: (answer) => {
+        if (answer.length > 1 || answer.length == 0) {
+          return 'You can only choose one artist at a time.'
+        }
+        return true;
+      }
+    }])
+  })
+  .then(result => {
+    listOfArtists.forEach((value, index) => {
+      //console.log("You chose: ", result.music_artists);
+      //console.log("Currently: ", value.name);
+      if(value.name === (result.music_artists.toString())){
+        // console.log(listOfArtists[index]);
+        tables.push(
+          { 'name': value.name },
+          { 'popularity': value.popularity},
+          { 'genre(s)' : value.genre},
+          { 'followers' : value.followers}
+        );
+        console.log(tables.toString());
+        
+      }
+    })
+  })
+  .catch(err => console.log(err))
+}, 1000);
+}
+
+//matthew (251-263)
+// Must be logged in browser before hand to work smoothly
+const featuredPlaylists = (query) => {
+
+  dataP.push(['Playlist', 'Link to Playlist (Hold cmd and click)'])
+  setTimeout(() => {
+    
+
+  newRelease.featuredPlaylists(query)
+    .then(result => {
+      result.playlists.items.forEach(function (element) {
+        dataP.push([element.name, element.external_urls.spotify])
+        output = table(dataP);
+      });
+      console.log(output);
+    })
+    .catch(err => console.log(err))
+  }, 1000);
+}
+
 
 module.exports = {
+  search_artist,
   new_release,
-  draw
+  featuredPlaylists,
+  draw,
+  
 
 }
 
